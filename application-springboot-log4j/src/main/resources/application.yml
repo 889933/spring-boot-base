@@ -1,0 +1,12 @@
+
+# 端口
+server:
+  port: 8080
+
+spring:
+  application:
+    # 应用名称
+    name: application-springboot-log4j2
+  logging:
+    config: classpath:log4j2.xml
+

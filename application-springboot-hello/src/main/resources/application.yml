@@ -1,0 +1,12 @@
+
+# 端口
+server:
+  port: 8080
+
+spring:
+  application:
+    # 应用名称
+    name: hello
+  profiles:
+    # 使用的配置文件
+    active: pro
