@@ -1,0 +1,1104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mybatis.generator.mapper.YGoodsMapper">
+  <resultMap id="BaseResultMap" type="com.example.mybatis.generator.entity.YGoods">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="goods_name" jdbcType="VARCHAR" property="goodsName" />
+    <result column="market_price" jdbcType="REAL" property="marketPrice" />
+    <result column="goods_num" jdbcType="CHAR" property="goodsNum" />
+    <result column="shop_price" jdbcType="REAL" property="shopPrice" />
+    <result column="goods_dz" jdbcType="VARCHAR" property="goodsDz" />
+    <result column="goods_dzh" jdbcType="REAL" property="goodsDzh" />
+    <result column="goods_class" jdbcType="VARCHAR" property="goodsClass" />
+    <result column="goods_eclass" jdbcType="VARCHAR" property="goodsEclass" />
+    <result column="goods_xh" jdbcType="VARCHAR" property="goodsXh" />
+    <result column="goods_cz" jdbcType="VARCHAR" property="goodsCz" />
+    <result column="goods_tm" jdbcType="VARCHAR" property="goodsTm" />
+    <result column="goods_gg" jdbcType="VARCHAR" property="goodsGg" />
+    <result column="goods_bh" jdbcType="VARCHAR" property="goodsBh" />
+    <result column="goods_zl" jdbcType="VARCHAR" property="goodsZl" />
+    <result column="goods_pics" jdbcType="VARCHAR" property="goodsPics" />
+    <result column="goods_rm" jdbcType="INTEGER" property="goodsRm" />
+    <result column="goods_new" jdbcType="INTEGER" property="goodsNew" />
+    <result column="goods_djs" jdbcType="INTEGER" property="goodsDjs" />
+    <result column="goods_addtime" jdbcType="INTEGER" property="goodsAddtime" />
+    <result column="goods_nums" jdbcType="INTEGER" property="goodsNums" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.example.mybatis.generator.entity.YGoods">
+    <result column="goods_desc" jdbcType="LONGVARCHAR" property="goodsDesc" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, goods_name, market_price, goods_num, shop_price, goods_dz, goods_dzh, goods_class, 
+    goods_eclass, goods_xh, goods_cz, goods_tm, goods_gg, goods_bh, goods_zl, goods_pics, 
+    goods_rm, goods_new, goods_djs, goods_addtime, goods_nums
+  </sql>
+  <sql id="Blob_Column_List">
+    goods_desc
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.example.mybatis.generator.entity.YGoodsExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from y_goods
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.example.mybatis.generator.entity.YGoodsExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from y_goods
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from y_goods
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from y_goods
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.example.mybatis.generator.entity.YGoodsExample">
+    delete from y_goods
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.example.mybatis.generator.entity.YGoods">
+    insert into y_goods (id, goods_name, market_price, 
+      goods_num, shop_price, goods_dz, 
+      goods_dzh, goods_class, goods_eclass, 
+      goods_xh, goods_cz, goods_tm, 
+      goods_gg, goods_bh, goods_zl, 
+      goods_pics, goods_rm, goods_new, 
+      goods_djs, goods_addtime, goods_nums, 
+      goods_desc)
+    values (#{id,jdbcType=INTEGER}, #{goodsName,jdbcType=VARCHAR}, #{marketPrice,jdbcType=REAL}, 
+      #{goodsNum,jdbcType=CHAR}, #{shopPrice,jdbcType=REAL}, #{goodsDz,jdbcType=VARCHAR}, 
+      #{goodsDzh,jdbcType=REAL}, #{goodsClass,jdbcType=VARCHAR}, #{goodsEclass,jdbcType=VARCHAR}, 
+      #{goodsXh,jdbcType=VARCHAR}, #{goodsCz,jdbcType=VARCHAR}, #{goodsTm,jdbcType=VARCHAR}, 
+      #{goodsGg,jdbcType=VARCHAR}, #{goodsBh,jdbcType=VARCHAR}, #{goodsZl,jdbcType=VARCHAR}, 
+      #{goodsPics,jdbcType=VARCHAR}, #{goodsRm,jdbcType=INTEGER}, #{goodsNew,jdbcType=INTEGER}, 
+      #{goodsDjs,jdbcType=INTEGER}, #{goodsAddtime,jdbcType=INTEGER}, #{goodsNums,jdbcType=INTEGER}, 
+      #{goodsDesc,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.mybatis.generator.entity.YGoods">
+    insert into y_goods
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="goodsName != null">
+        goods_name,
+      </if>
+      <if test="marketPrice != null">
+        market_price,
+      </if>
+      <if test="goodsNum != null">
+        goods_num,
+      </if>
+      <if test="shopPrice != null">
+        shop_price,
+      </if>
+      <if test="goodsDz != null">
+        goods_dz,
+      </if>
+      <if test="goodsDzh != null">
+        goods_dzh,
+      </if>
+      <if test="goodsClass != null">
+        goods_class,
+      </if>
+      <if test="goodsEclass != null">
+        goods_eclass,
+      </if>
+      <if test="goodsXh != null">
+        goods_xh,
+      </if>
+      <if test="goodsCz != null">
+        goods_cz,
+      </if>
+      <if test="goodsTm != null">
+        goods_tm,
+      </if>
+      <if test="goodsGg != null">
+        goods_gg,
+      </if>
+      <if test="goodsBh != null">
+        goods_bh,
+      </if>
+      <if test="goodsZl != null">
+        goods_zl,
+      </if>
+      <if test="goodsPics != null">
+        goods_pics,
+      </if>
+      <if test="goodsRm != null">
+        goods_rm,
+      </if>
+      <if test="goodsNew != null">
+        goods_new,
+      </if>
+      <if test="goodsDjs != null">
+        goods_djs,
+      </if>
+      <if test="goodsAddtime != null">
+        goods_addtime,
+      </if>
+      <if test="goodsNums != null">
+        goods_nums,
+      </if>
+      <if test="goodsDesc != null">
+        goods_desc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="goodsName != null">
+        #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="marketPrice != null">
+        #{marketPrice,jdbcType=REAL},
+      </if>
+      <if test="goodsNum != null">
+        #{goodsNum,jdbcType=CHAR},
+      </if>
+      <if test="shopPrice != null">
+        #{shopPrice,jdbcType=REAL},
+      </if>
+      <if test="goodsDz != null">
+        #{goodsDz,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsDzh != null">
+        #{goodsDzh,jdbcType=REAL},
+      </if>
+      <if test="goodsClass != null">
+        #{goodsClass,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsEclass != null">
+        #{goodsEclass,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsXh != null">
+        #{goodsXh,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsCz != null">
+        #{goodsCz,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsTm != null">
+        #{goodsTm,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsGg != null">
+        #{goodsGg,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsBh != null">
+        #{goodsBh,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsZl != null">
+        #{goodsZl,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsPics != null">
+        #{goodsPics,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsRm != null">
+        #{goodsRm,jdbcType=INTEGER},
+      </if>
+      <if test="goodsNew != null">
+        #{goodsNew,jdbcType=INTEGER},
+      </if>
+      <if test="goodsDjs != null">
+        #{goodsDjs,jdbcType=INTEGER},
+      </if>
+      <if test="goodsAddtime != null">
+        #{goodsAddtime,jdbcType=INTEGER},
+      </if>
+      <if test="goodsNums != null">
+        #{goodsNums,jdbcType=INTEGER},
+      </if>
+      <if test="goodsDesc != null">
+        #{goodsDesc,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.example.mybatis.generator.entity.YGoodsExample" resultType="java.lang.Long">
+    select count(*) from y_goods
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update y_goods
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.goodsName != null">
+        goods_name = #{record.goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.marketPrice != null">
+        market_price = #{record.marketPrice,jdbcType=REAL},
+      </if>
+      <if test="record.goodsNum != null">
+        goods_num = #{record.goodsNum,jdbcType=CHAR},
+      </if>
+      <if test="record.shopPrice != null">
+        shop_price = #{record.shopPrice,jdbcType=REAL},
+      </if>
+      <if test="record.goodsDz != null">
+        goods_dz = #{record.goodsDz,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsDzh != null">
+        goods_dzh = #{record.goodsDzh,jdbcType=REAL},
+      </if>
+      <if test="record.goodsClass != null">
+        goods_class = #{record.goodsClass,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsEclass != null">
+        goods_eclass = #{record.goodsEclass,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsXh != null">
+        goods_xh = #{record.goodsXh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsCz != null">
+        goods_cz = #{record.goodsCz,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsTm != null">
+        goods_tm = #{record.goodsTm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsGg != null">
+        goods_gg = #{record.goodsGg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsBh != null">
+        goods_bh = #{record.goodsBh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsZl != null">
+        goods_zl = #{record.goodsZl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsPics != null">
+        goods_pics = #{record.goodsPics,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsRm != null">
+        goods_rm = #{record.goodsRm,jdbcType=INTEGER},
+      </if>
+      <if test="record.goodsNew != null">
+        goods_new = #{record.goodsNew,jdbcType=INTEGER},
+      </if>
+      <if test="record.goodsDjs != null">
+        goods_djs = #{record.goodsDjs,jdbcType=INTEGER},
+      </if>
+      <if test="record.goodsAddtime != null">
+        goods_addtime = #{record.goodsAddtime,jdbcType=INTEGER},
+      </if>
+      <if test="record.goodsNums != null">
+        goods_nums = #{record.goodsNums,jdbcType=INTEGER},
+      </if>
+      <if test="record.goodsDesc != null">
+        goods_desc = #{record.goodsDesc,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update y_goods
+    set id = #{record.id,jdbcType=INTEGER},
+      goods_name = #{record.goodsName,jdbcType=VARCHAR},
+      market_price = #{record.marketPrice,jdbcType=REAL},
+      goods_num = #{record.goodsNum,jdbcType=CHAR},
+      shop_price = #{record.shopPrice,jdbcType=REAL},
+      goods_dz = #{record.goodsDz,jdbcType=VARCHAR},
+      goods_dzh = #{record.goodsDzh,jdbcType=REAL},
+      goods_class = #{record.goodsClass,jdbcType=VARCHAR},
+      goods_eclass = #{record.goodsEclass,jdbcType=VARCHAR},
+      goods_xh = #{record.goodsXh,jdbcType=VARCHAR},
+      goods_cz = #{record.goodsCz,jdbcType=VARCHAR},
+      goods_tm = #{record.goodsTm,jdbcType=VARCHAR},
+      goods_gg = #{record.goodsGg,jdbcType=VARCHAR},
+      goods_bh = #{record.goodsBh,jdbcType=VARCHAR},
+      goods_zl = #{record.goodsZl,jdbcType=VARCHAR},
+      goods_pics = #{record.goodsPics,jdbcType=VARCHAR},
+      goods_rm = #{record.goodsRm,jdbcType=INTEGER},
+      goods_new = #{record.goodsNew,jdbcType=INTEGER},
+      goods_djs = #{record.goodsDjs,jdbcType=INTEGER},
+      goods_addtime = #{record.goodsAddtime,jdbcType=INTEGER},
+      goods_nums = #{record.goodsNums,jdbcType=INTEGER},
+      goods_desc = #{record.goodsDesc,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update y_goods
+    set id = #{record.id,jdbcType=INTEGER},
+      goods_name = #{record.goodsName,jdbcType=VARCHAR},
+      market_price = #{record.marketPrice,jdbcType=REAL},
+      goods_num = #{record.goodsNum,jdbcType=CHAR},
+      shop_price = #{record.shopPrice,jdbcType=REAL},
+      goods_dz = #{record.goodsDz,jdbcType=VARCHAR},
+      goods_dzh = #{record.goodsDzh,jdbcType=REAL},
+      goods_class = #{record.goodsClass,jdbcType=VARCHAR},
+      goods_eclass = #{record.goodsEclass,jdbcType=VARCHAR},
+      goods_xh = #{record.goodsXh,jdbcType=VARCHAR},
+      goods_cz = #{record.goodsCz,jdbcType=VARCHAR},
+      goods_tm = #{record.goodsTm,jdbcType=VARCHAR},
+      goods_gg = #{record.goodsGg,jdbcType=VARCHAR},
+      goods_bh = #{record.goodsBh,jdbcType=VARCHAR},
+      goods_zl = #{record.goodsZl,jdbcType=VARCHAR},
+      goods_pics = #{record.goodsPics,jdbcType=VARCHAR},
+      goods_rm = #{record.goodsRm,jdbcType=INTEGER},
+      goods_new = #{record.goodsNew,jdbcType=INTEGER},
+      goods_djs = #{record.goodsDjs,jdbcType=INTEGER},
+      goods_addtime = #{record.goodsAddtime,jdbcType=INTEGER},
+      goods_nums = #{record.goodsNums,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.mybatis.generator.entity.YGoods">
+    update y_goods
+    <set>
+      <if test="goodsName != null">
+        goods_name = #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="marketPrice != null">
+        market_price = #{marketPrice,jdbcType=REAL},
+      </if>
+      <if test="goodsNum != null">
+        goods_num = #{goodsNum,jdbcType=CHAR},
+      </if>
+      <if test="shopPrice != null">
+        shop_price = #{shopPrice,jdbcType=REAL},
+      </if>
+      <if test="goodsDz != null">
+        goods_dz = #{goodsDz,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsDzh != null">
+        goods_dzh = #{goodsDzh,jdbcType=REAL},
+      </if>
+      <if test="goodsClass != null">
+        goods_class = #{goodsClass,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsEclass != null">
+        goods_eclass = #{goodsEclass,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsXh != null">
+        goods_xh = #{goodsXh,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsCz != null">
+        goods_cz = #{goodsCz,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsTm != null">
+        goods_tm = #{goodsTm,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsGg != null">
+        goods_gg = #{goodsGg,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsBh != null">
+        goods_bh = #{goodsBh,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsZl != null">
+        goods_zl = #{goodsZl,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsPics != null">
+        goods_pics = #{goodsPics,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsRm != null">
+        goods_rm = #{goodsRm,jdbcType=INTEGER},
+      </if>
+      <if test="goodsNew != null">
+        goods_new = #{goodsNew,jdbcType=INTEGER},
+      </if>
+      <if test="goodsDjs != null">
+        goods_djs = #{goodsDjs,jdbcType=INTEGER},
+      </if>
+      <if test="goodsAddtime != null">
+        goods_addtime = #{goodsAddtime,jdbcType=INTEGER},
+      </if>
+      <if test="goodsNums != null">
+        goods_nums = #{goodsNums,jdbcType=INTEGER},
+      </if>
+      <if test="goodsDesc != null">
+        goods_desc = #{goodsDesc,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.example.mybatis.generator.entity.YGoods">
+    update y_goods
+    set goods_name = #{goodsName,jdbcType=VARCHAR},
+      market_price = #{marketPrice,jdbcType=REAL},
+      goods_num = #{goodsNum,jdbcType=CHAR},
+      shop_price = #{shopPrice,jdbcType=REAL},
+      goods_dz = #{goodsDz,jdbcType=VARCHAR},
+      goods_dzh = #{goodsDzh,jdbcType=REAL},
+      goods_class = #{goodsClass,jdbcType=VARCHAR},
+      goods_eclass = #{goodsEclass,jdbcType=VARCHAR},
+      goods_xh = #{goodsXh,jdbcType=VARCHAR},
+      goods_cz = #{goodsCz,jdbcType=VARCHAR},
+      goods_tm = #{goodsTm,jdbcType=VARCHAR},
+      goods_gg = #{goodsGg,jdbcType=VARCHAR},
+      goods_bh = #{goodsBh,jdbcType=VARCHAR},
+      goods_zl = #{goodsZl,jdbcType=VARCHAR},
+      goods_pics = #{goodsPics,jdbcType=VARCHAR},
+      goods_rm = #{goodsRm,jdbcType=INTEGER},
+      goods_new = #{goodsNew,jdbcType=INTEGER},
+      goods_djs = #{goodsDjs,jdbcType=INTEGER},
+      goods_addtime = #{goodsAddtime,jdbcType=INTEGER},
+      goods_nums = #{goodsNums,jdbcType=INTEGER},
+      goods_desc = #{goodsDesc,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.mybatis.generator.entity.YGoods">
+    update y_goods
+    set goods_name = #{goodsName,jdbcType=VARCHAR},
+      market_price = #{marketPrice,jdbcType=REAL},
+      goods_num = #{goodsNum,jdbcType=CHAR},
+      shop_price = #{shopPrice,jdbcType=REAL},
+      goods_dz = #{goodsDz,jdbcType=VARCHAR},
+      goods_dzh = #{goodsDzh,jdbcType=REAL},
+      goods_class = #{goodsClass,jdbcType=VARCHAR},
+      goods_eclass = #{goodsEclass,jdbcType=VARCHAR},
+      goods_xh = #{goodsXh,jdbcType=VARCHAR},
+      goods_cz = #{goodsCz,jdbcType=VARCHAR},
+      goods_tm = #{goodsTm,jdbcType=VARCHAR},
+      goods_gg = #{goodsGg,jdbcType=VARCHAR},
+      goods_bh = #{goodsBh,jdbcType=VARCHAR},
+      goods_zl = #{goodsZl,jdbcType=VARCHAR},
+      goods_pics = #{goodsPics,jdbcType=VARCHAR},
+      goods_rm = #{goodsRm,jdbcType=INTEGER},
+      goods_new = #{goodsNew,jdbcType=INTEGER},
+      goods_djs = #{goodsDjs,jdbcType=INTEGER},
+      goods_addtime = #{goodsAddtime,jdbcType=INTEGER},
+      goods_nums = #{goodsNums,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.mybatis.generator.entity.YGoods">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="goods_name" jdbcType="VARCHAR" property="goodsName" />
+    <result column="market_price" jdbcType="REAL" property="marketPrice" />
+    <result column="goods_num" jdbcType="CHAR" property="goodsNum" />
+    <result column="shop_price" jdbcType="REAL" property="shopPrice" />
+    <result column="goods_dz" jdbcType="VARCHAR" property="goodsDz" />
+    <result column="goods_dzh" jdbcType="REAL" property="goodsDzh" />
+    <result column="goods_class" jdbcType="VARCHAR" property="goodsClass" />
+    <result column="goods_eclass" jdbcType="VARCHAR" property="goodsEclass" />
+    <result column="goods_xh" jdbcType="VARCHAR" property="goodsXh" />
+    <result column="goods_cz" jdbcType="VARCHAR" property="goodsCz" />
+    <result column="goods_tm" jdbcType="VARCHAR" property="goodsTm" />
+    <result column="goods_gg" jdbcType="VARCHAR" property="goodsGg" />
+    <result column="goods_bh" jdbcType="VARCHAR" property="goodsBh" />
+    <result column="goods_zl" jdbcType="VARCHAR" property="goodsZl" />
+    <result column="goods_pics" jdbcType="VARCHAR" property="goodsPics" />
+    <result column="goods_rm" jdbcType="INTEGER" property="goodsRm" />
+    <result column="goods_new" jdbcType="INTEGER" property="goodsNew" />
+    <result column="goods_djs" jdbcType="INTEGER" property="goodsDjs" />
+    <result column="goods_addtime" jdbcType="INTEGER" property="goodsAddtime" />
+    <result column="goods_nums" jdbcType="INTEGER" property="goodsNums" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.example.mybatis.generator.entity.YGoods">
+    <result column="goods_desc" jdbcType="LONGVARCHAR" property="goodsDesc" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, goods_name, market_price, goods_num, shop_price, goods_dz, goods_dzh, goods_class, 
+    goods_eclass, goods_xh, goods_cz, goods_tm, goods_gg, goods_bh, goods_zl, goods_pics, 
+    goods_rm, goods_new, goods_djs, goods_addtime, goods_nums
+  </sql>
+  <sql id="Blob_Column_List">
+    goods_desc
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.example.mybatis.generator.entity.YGoodsExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from y_goods
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.example.mybatis.generator.entity.YGoodsExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from y_goods
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from y_goods
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from y_goods
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.example.mybatis.generator.entity.YGoodsExample">
+    delete from y_goods
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.example.mybatis.generator.entity.YGoods">
+    insert into y_goods (id, goods_name, market_price, 
+      goods_num, shop_price, goods_dz, 
+      goods_dzh, goods_class, goods_eclass, 
+      goods_xh, goods_cz, goods_tm, 
+      goods_gg, goods_bh, goods_zl, 
+      goods_pics, goods_rm, goods_new, 
+      goods_djs, goods_addtime, goods_nums, 
+      goods_desc)
+    values (#{id,jdbcType=INTEGER}, #{goodsName,jdbcType=VARCHAR}, #{marketPrice,jdbcType=REAL}, 
+      #{goodsNum,jdbcType=CHAR}, #{shopPrice,jdbcType=REAL}, #{goodsDz,jdbcType=VARCHAR}, 
+      #{goodsDzh,jdbcType=REAL}, #{goodsClass,jdbcType=VARCHAR}, #{goodsEclass,jdbcType=VARCHAR}, 
+      #{goodsXh,jdbcType=VARCHAR}, #{goodsCz,jdbcType=VARCHAR}, #{goodsTm,jdbcType=VARCHAR}, 
+      #{goodsGg,jdbcType=VARCHAR}, #{goodsBh,jdbcType=VARCHAR}, #{goodsZl,jdbcType=VARCHAR}, 
+      #{goodsPics,jdbcType=VARCHAR}, #{goodsRm,jdbcType=INTEGER}, #{goodsNew,jdbcType=INTEGER}, 
+      #{goodsDjs,jdbcType=INTEGER}, #{goodsAddtime,jdbcType=INTEGER}, #{goodsNums,jdbcType=INTEGER}, 
+      #{goodsDesc,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.mybatis.generator.entity.YGoods">
+    insert into y_goods
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="goodsName != null">
+        goods_name,
+      </if>
+      <if test="marketPrice != null">
+        market_price,
+      </if>
+      <if test="goodsNum != null">
+        goods_num,
+      </if>
+      <if test="shopPrice != null">
+        shop_price,
+      </if>
+      <if test="goodsDz != null">
+        goods_dz,
+      </if>
+      <if test="goodsDzh != null">
+        goods_dzh,
+      </if>
+      <if test="goodsClass != null">
+        goods_class,
+      </if>
+      <if test="goodsEclass != null">
+        goods_eclass,
+      </if>
+      <if test="goodsXh != null">
+        goods_xh,
+      </if>
+      <if test="goodsCz != null">
+        goods_cz,
+      </if>
+      <if test="goodsTm != null">
+        goods_tm,
+      </if>
+      <if test="goodsGg != null">
+        goods_gg,
+      </if>
+      <if test="goodsBh != null">
+        goods_bh,
+      </if>
+      <if test="goodsZl != null">
+        goods_zl,
+      </if>
+      <if test="goodsPics != null">
+        goods_pics,
+      </if>
+      <if test="goodsRm != null">
+        goods_rm,
+      </if>
+      <if test="goodsNew != null">
+        goods_new,
+      </if>
+      <if test="goodsDjs != null">
+        goods_djs,
+      </if>
+      <if test="goodsAddtime != null">
+        goods_addtime,
+      </if>
+      <if test="goodsNums != null">
+        goods_nums,
+      </if>
+      <if test="goodsDesc != null">
+        goods_desc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="goodsName != null">
+        #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="marketPrice != null">
+        #{marketPrice,jdbcType=REAL},
+      </if>
+      <if test="goodsNum != null">
+        #{goodsNum,jdbcType=CHAR},
+      </if>
+      <if test="shopPrice != null">
+        #{shopPrice,jdbcType=REAL},
+      </if>
+      <if test="goodsDz != null">
+        #{goodsDz,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsDzh != null">
+        #{goodsDzh,jdbcType=REAL},
+      </if>
+      <if test="goodsClass != null">
+        #{goodsClass,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsEclass != null">
+        #{goodsEclass,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsXh != null">
+        #{goodsXh,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsCz != null">
+        #{goodsCz,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsTm != null">
+        #{goodsTm,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsGg != null">
+        #{goodsGg,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsBh != null">
+        #{goodsBh,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsZl != null">
+        #{goodsZl,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsPics != null">
+        #{goodsPics,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsRm != null">
+        #{goodsRm,jdbcType=INTEGER},
+      </if>
+      <if test="goodsNew != null">
+        #{goodsNew,jdbcType=INTEGER},
+      </if>
+      <if test="goodsDjs != null">
+        #{goodsDjs,jdbcType=INTEGER},
+      </if>
+      <if test="goodsAddtime != null">
+        #{goodsAddtime,jdbcType=INTEGER},
+      </if>
+      <if test="goodsNums != null">
+        #{goodsNums,jdbcType=INTEGER},
+      </if>
+      <if test="goodsDesc != null">
+        #{goodsDesc,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.example.mybatis.generator.entity.YGoodsExample" resultType="java.lang.Long">
+    select count(*) from y_goods
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update y_goods
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.goodsName != null">
+        goods_name = #{record.goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.marketPrice != null">
+        market_price = #{record.marketPrice,jdbcType=REAL},
+      </if>
+      <if test="record.goodsNum != null">
+        goods_num = #{record.goodsNum,jdbcType=CHAR},
+      </if>
+      <if test="record.shopPrice != null">
+        shop_price = #{record.shopPrice,jdbcType=REAL},
+      </if>
+      <if test="record.goodsDz != null">
+        goods_dz = #{record.goodsDz,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsDzh != null">
+        goods_dzh = #{record.goodsDzh,jdbcType=REAL},
+      </if>
+      <if test="record.goodsClass != null">
+        goods_class = #{record.goodsClass,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsEclass != null">
+        goods_eclass = #{record.goodsEclass,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsXh != null">
+        goods_xh = #{record.goodsXh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsCz != null">
+        goods_cz = #{record.goodsCz,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsTm != null">
+        goods_tm = #{record.goodsTm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsGg != null">
+        goods_gg = #{record.goodsGg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsBh != null">
+        goods_bh = #{record.goodsBh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsZl != null">
+        goods_zl = #{record.goodsZl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsPics != null">
+        goods_pics = #{record.goodsPics,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsRm != null">
+        goods_rm = #{record.goodsRm,jdbcType=INTEGER},
+      </if>
+      <if test="record.goodsNew != null">
+        goods_new = #{record.goodsNew,jdbcType=INTEGER},
+      </if>
+      <if test="record.goodsDjs != null">
+        goods_djs = #{record.goodsDjs,jdbcType=INTEGER},
+      </if>
+      <if test="record.goodsAddtime != null">
+        goods_addtime = #{record.goodsAddtime,jdbcType=INTEGER},
+      </if>
+      <if test="record.goodsNums != null">
+        goods_nums = #{record.goodsNums,jdbcType=INTEGER},
+      </if>
+      <if test="record.goodsDesc != null">
+        goods_desc = #{record.goodsDesc,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update y_goods
+    set id = #{record.id,jdbcType=INTEGER},
+      goods_name = #{record.goodsName,jdbcType=VARCHAR},
+      market_price = #{record.marketPrice,jdbcType=REAL},
+      goods_num = #{record.goodsNum,jdbcType=CHAR},
+      shop_price = #{record.shopPrice,jdbcType=REAL},
+      goods_dz = #{record.goodsDz,jdbcType=VARCHAR},
+      goods_dzh = #{record.goodsDzh,jdbcType=REAL},
+      goods_class = #{record.goodsClass,jdbcType=VARCHAR},
+      goods_eclass = #{record.goodsEclass,jdbcType=VARCHAR},
+      goods_xh = #{record.goodsXh,jdbcType=VARCHAR},
+      goods_cz = #{record.goodsCz,jdbcType=VARCHAR},
+      goods_tm = #{record.goodsTm,jdbcType=VARCHAR},
+      goods_gg = #{record.goodsGg,jdbcType=VARCHAR},
+      goods_bh = #{record.goodsBh,jdbcType=VARCHAR},
+      goods_zl = #{record.goodsZl,jdbcType=VARCHAR},
+      goods_pics = #{record.goodsPics,jdbcType=VARCHAR},
+      goods_rm = #{record.goodsRm,jdbcType=INTEGER},
+      goods_new = #{record.goodsNew,jdbcType=INTEGER},
+      goods_djs = #{record.goodsDjs,jdbcType=INTEGER},
+      goods_addtime = #{record.goodsAddtime,jdbcType=INTEGER},
+      goods_nums = #{record.goodsNums,jdbcType=INTEGER},
+      goods_desc = #{record.goodsDesc,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update y_goods
+    set id = #{record.id,jdbcType=INTEGER},
+      goods_name = #{record.goodsName,jdbcType=VARCHAR},
+      market_price = #{record.marketPrice,jdbcType=REAL},
+      goods_num = #{record.goodsNum,jdbcType=CHAR},
+      shop_price = #{record.shopPrice,jdbcType=REAL},
+      goods_dz = #{record.goodsDz,jdbcType=VARCHAR},
+      goods_dzh = #{record.goodsDzh,jdbcType=REAL},
+      goods_class = #{record.goodsClass,jdbcType=VARCHAR},
+      goods_eclass = #{record.goodsEclass,jdbcType=VARCHAR},
+      goods_xh = #{record.goodsXh,jdbcType=VARCHAR},
+      goods_cz = #{record.goodsCz,jdbcType=VARCHAR},
+      goods_tm = #{record.goodsTm,jdbcType=VARCHAR},
+      goods_gg = #{record.goodsGg,jdbcType=VARCHAR},
+      goods_bh = #{record.goodsBh,jdbcType=VARCHAR},
+      goods_zl = #{record.goodsZl,jdbcType=VARCHAR},
+      goods_pics = #{record.goodsPics,jdbcType=VARCHAR},
+      goods_rm = #{record.goodsRm,jdbcType=INTEGER},
+      goods_new = #{record.goodsNew,jdbcType=INTEGER},
+      goods_djs = #{record.goodsDjs,jdbcType=INTEGER},
+      goods_addtime = #{record.goodsAddtime,jdbcType=INTEGER},
+      goods_nums = #{record.goodsNums,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.mybatis.generator.entity.YGoods">
+    update y_goods
+    <set>
+      <if test="goodsName != null">
+        goods_name = #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="marketPrice != null">
+        market_price = #{marketPrice,jdbcType=REAL},
+      </if>
+      <if test="goodsNum != null">
+        goods_num = #{goodsNum,jdbcType=CHAR},
+      </if>
+      <if test="shopPrice != null">
+        shop_price = #{shopPrice,jdbcType=REAL},
+      </if>
+      <if test="goodsDz != null">
+        goods_dz = #{goodsDz,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsDzh != null">
+        goods_dzh = #{goodsDzh,jdbcType=REAL},
+      </if>
+      <if test="goodsClass != null">
+        goods_class = #{goodsClass,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsEclass != null">
+        goods_eclass = #{goodsEclass,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsXh != null">
+        goods_xh = #{goodsXh,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsCz != null">
+        goods_cz = #{goodsCz,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsTm != null">
+        goods_tm = #{goodsTm,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsGg != null">
+        goods_gg = #{goodsGg,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsBh != null">
+        goods_bh = #{goodsBh,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsZl != null">
+        goods_zl = #{goodsZl,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsPics != null">
+        goods_pics = #{goodsPics,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsRm != null">
+        goods_rm = #{goodsRm,jdbcType=INTEGER},
+      </if>
+      <if test="goodsNew != null">
+        goods_new = #{goodsNew,jdbcType=INTEGER},
+      </if>
+      <if test="goodsDjs != null">
+        goods_djs = #{goodsDjs,jdbcType=INTEGER},
+      </if>
+      <if test="goodsAddtime != null">
+        goods_addtime = #{goodsAddtime,jdbcType=INTEGER},
+      </if>
+      <if test="goodsNums != null">
+        goods_nums = #{goodsNums,jdbcType=INTEGER},
+      </if>
+      <if test="goodsDesc != null">
+        goods_desc = #{goodsDesc,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.example.mybatis.generator.entity.YGoods">
+    update y_goods
+    set goods_name = #{goodsName,jdbcType=VARCHAR},
+      market_price = #{marketPrice,jdbcType=REAL},
+      goods_num = #{goodsNum,jdbcType=CHAR},
+      shop_price = #{shopPrice,jdbcType=REAL},
+      goods_dz = #{goodsDz,jdbcType=VARCHAR},
+      goods_dzh = #{goodsDzh,jdbcType=REAL},
+      goods_class = #{goodsClass,jdbcType=VARCHAR},
+      goods_eclass = #{goodsEclass,jdbcType=VARCHAR},
+      goods_xh = #{goodsXh,jdbcType=VARCHAR},
+      goods_cz = #{goodsCz,jdbcType=VARCHAR},
+      goods_tm = #{goodsTm,jdbcType=VARCHAR},
+      goods_gg = #{goodsGg,jdbcType=VARCHAR},
+      goods_bh = #{goodsBh,jdbcType=VARCHAR},
+      goods_zl = #{goodsZl,jdbcType=VARCHAR},
+      goods_pics = #{goodsPics,jdbcType=VARCHAR},
+      goods_rm = #{goodsRm,jdbcType=INTEGER},
+      goods_new = #{goodsNew,jdbcType=INTEGER},
+      goods_djs = #{goodsDjs,jdbcType=INTEGER},
+      goods_addtime = #{goodsAddtime,jdbcType=INTEGER},
+      goods_nums = #{goodsNums,jdbcType=INTEGER},
+      goods_desc = #{goodsDesc,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.mybatis.generator.entity.YGoods">
+    update y_goods
+    set goods_name = #{goodsName,jdbcType=VARCHAR},
+      market_price = #{marketPrice,jdbcType=REAL},
+      goods_num = #{goodsNum,jdbcType=CHAR},
+      shop_price = #{shopPrice,jdbcType=REAL},
+      goods_dz = #{goodsDz,jdbcType=VARCHAR},
+      goods_dzh = #{goodsDzh,jdbcType=REAL},
+      goods_class = #{goodsClass,jdbcType=VARCHAR},
+      goods_eclass = #{goodsEclass,jdbcType=VARCHAR},
+      goods_xh = #{goodsXh,jdbcType=VARCHAR},
+      goods_cz = #{goodsCz,jdbcType=VARCHAR},
+      goods_tm = #{goodsTm,jdbcType=VARCHAR},
+      goods_gg = #{goodsGg,jdbcType=VARCHAR},
+      goods_bh = #{goodsBh,jdbcType=VARCHAR},
+      goods_zl = #{goodsZl,jdbcType=VARCHAR},
+      goods_pics = #{goodsPics,jdbcType=VARCHAR},
+      goods_rm = #{goodsRm,jdbcType=INTEGER},
+      goods_new = #{goodsNew,jdbcType=INTEGER},
+      goods_djs = #{goodsDjs,jdbcType=INTEGER},
+      goods_addtime = #{goodsAddtime,jdbcType=INTEGER},
+      goods_nums = #{goodsNums,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

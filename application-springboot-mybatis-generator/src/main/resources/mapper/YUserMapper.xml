@@ -1,0 +1,452 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mybatis.generator.mapper.YUserMapper">
+  <resultMap id="BaseResultMap" type="com.example.mybatis.generator.entity.YUser">
+    <id column="id" jdbcType="TINYINT" property="id" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="userpwd" jdbcType="CHAR" property="userpwd" />
+    <result column="name" jdbcType="CHAR" property="name" />
+    <result column="logintime" jdbcType="INTEGER" property="logintime" />
+    <result column="loginnums" jdbcType="INTEGER" property="loginnums" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, username, userpwd, name, logintime, loginnums
+  </sql>
+  <select id="selectByExample" parameterType="com.example.mybatis.generator.entity.YUserExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from y_user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Byte" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from y_user
+    where id = #{id,jdbcType=TINYINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Byte">
+    delete from y_user
+    where id = #{id,jdbcType=TINYINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.example.mybatis.generator.entity.YUserExample">
+    delete from y_user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.example.mybatis.generator.entity.YUser">
+    insert into y_user (id, username, userpwd, 
+      name, logintime, loginnums
+      )
+    values (#{id,jdbcType=TINYINT}, #{username,jdbcType=VARCHAR}, #{userpwd,jdbcType=CHAR}, 
+      #{name,jdbcType=CHAR}, #{logintime,jdbcType=INTEGER}, #{loginnums,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.mybatis.generator.entity.YUser">
+    insert into y_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+      <if test="userpwd != null">
+        userpwd,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="logintime != null">
+        logintime,
+      </if>
+      <if test="loginnums != null">
+        loginnums,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=TINYINT},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="userpwd != null">
+        #{userpwd,jdbcType=CHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=CHAR},
+      </if>
+      <if test="logintime != null">
+        #{logintime,jdbcType=INTEGER},
+      </if>
+      <if test="loginnums != null">
+        #{loginnums,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.example.mybatis.generator.entity.YUserExample" resultType="java.lang.Long">
+    select count(*) from y_user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update y_user
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=TINYINT},
+      </if>
+      <if test="record.username != null">
+        username = #{record.username,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userpwd != null">
+        userpwd = #{record.userpwd,jdbcType=CHAR},
+      </if>
+      <if test="record.name != null">
+        name = #{record.name,jdbcType=CHAR},
+      </if>
+      <if test="record.logintime != null">
+        logintime = #{record.logintime,jdbcType=INTEGER},
+      </if>
+      <if test="record.loginnums != null">
+        loginnums = #{record.loginnums,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update y_user
+    set id = #{record.id,jdbcType=TINYINT},
+      username = #{record.username,jdbcType=VARCHAR},
+      userpwd = #{record.userpwd,jdbcType=CHAR},
+      name = #{record.name,jdbcType=CHAR},
+      logintime = #{record.logintime,jdbcType=INTEGER},
+      loginnums = #{record.loginnums,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.mybatis.generator.entity.YUser">
+    update y_user
+    <set>
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="userpwd != null">
+        userpwd = #{userpwd,jdbcType=CHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=CHAR},
+      </if>
+      <if test="logintime != null">
+        logintime = #{logintime,jdbcType=INTEGER},
+      </if>
+      <if test="loginnums != null">
+        loginnums = #{loginnums,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=TINYINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.mybatis.generator.entity.YUser">
+    update y_user
+    set username = #{username,jdbcType=VARCHAR},
+      userpwd = #{userpwd,jdbcType=CHAR},
+      name = #{name,jdbcType=CHAR},
+      logintime = #{logintime,jdbcType=INTEGER},
+      loginnums = #{loginnums,jdbcType=INTEGER}
+    where id = #{id,jdbcType=TINYINT}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.mybatis.generator.entity.YUser">
+    <id column="id" jdbcType="TINYINT" property="id" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="userpwd" jdbcType="CHAR" property="userpwd" />
+    <result column="name" jdbcType="CHAR" property="name" />
+    <result column="logintime" jdbcType="INTEGER" property="logintime" />
+    <result column="loginnums" jdbcType="INTEGER" property="loginnums" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, username, userpwd, name, logintime, loginnums
+  </sql>
+  <select id="selectByExample" parameterType="com.example.mybatis.generator.entity.YUserExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from y_user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Byte" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from y_user
+    where id = #{id,jdbcType=TINYINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Byte">
+    delete from y_user
+    where id = #{id,jdbcType=TINYINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.example.mybatis.generator.entity.YUserExample">
+    delete from y_user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.example.mybatis.generator.entity.YUser">
+    insert into y_user (id, username, userpwd, 
+      name, logintime, loginnums
+      )
+    values (#{id,jdbcType=TINYINT}, #{username,jdbcType=VARCHAR}, #{userpwd,jdbcType=CHAR}, 
+      #{name,jdbcType=CHAR}, #{logintime,jdbcType=INTEGER}, #{loginnums,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.mybatis.generator.entity.YUser">
+    insert into y_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+      <if test="userpwd != null">
+        userpwd,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="logintime != null">
+        logintime,
+      </if>
+      <if test="loginnums != null">
+        loginnums,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=TINYINT},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="userpwd != null">
+        #{userpwd,jdbcType=CHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=CHAR},
+      </if>
+      <if test="logintime != null">
+        #{logintime,jdbcType=INTEGER},
+      </if>
+      <if test="loginnums != null">
+        #{loginnums,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.example.mybatis.generator.entity.YUserExample" resultType="java.lang.Long">
+    select count(*) from y_user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update y_user
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=TINYINT},
+      </if>
+      <if test="record.username != null">
+        username = #{record.username,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userpwd != null">
+        userpwd = #{record.userpwd,jdbcType=CHAR},
+      </if>
+      <if test="record.name != null">
+        name = #{record.name,jdbcType=CHAR},
+      </if>
+      <if test="record.logintime != null">
+        logintime = #{record.logintime,jdbcType=INTEGER},
+      </if>
+      <if test="record.loginnums != null">
+        loginnums = #{record.loginnums,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update y_user
+    set id = #{record.id,jdbcType=TINYINT},
+      username = #{record.username,jdbcType=VARCHAR},
+      userpwd = #{record.userpwd,jdbcType=CHAR},
+      name = #{record.name,jdbcType=CHAR},
+      logintime = #{record.logintime,jdbcType=INTEGER},
+      loginnums = #{record.loginnums,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.mybatis.generator.entity.YUser">
+    update y_user
+    <set>
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="userpwd != null">
+        userpwd = #{userpwd,jdbcType=CHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=CHAR},
+      </if>
+      <if test="logintime != null">
+        logintime = #{logintime,jdbcType=INTEGER},
+      </if>
+      <if test="loginnums != null">
+        loginnums = #{loginnums,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=TINYINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.mybatis.generator.entity.YUser">
+    update y_user
+    set username = #{username,jdbcType=VARCHAR},
+      userpwd = #{userpwd,jdbcType=CHAR},
+      name = #{name,jdbcType=CHAR},
+      logintime = #{logintime,jdbcType=INTEGER},
+      loginnums = #{loginnums,jdbcType=INTEGER}
+    where id = #{id,jdbcType=TINYINT}
+  </update>
+</mapper>

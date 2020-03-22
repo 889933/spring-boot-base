@@ -1,0 +1,856 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mybatis.generator.mapper.YNewsMapper">
+  <resultMap id="BaseResultMap" type="com.example.mybatis.generator.entity.YNews">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="news_tit" jdbcType="VARCHAR" property="newsTit" />
+    <result column="titlepic" jdbcType="VARCHAR" property="titlepic" />
+    <result column="news_jj" jdbcType="VARCHAR" property="newsJj" />
+    <result column="news_source" jdbcType="VARCHAR" property="newsSource" />
+    <result column="add_time" jdbcType="INTEGER" property="addTime" />
+    <result column="add_ip" jdbcType="CHAR" property="addIp" />
+    <result column="news_class" jdbcType="VARCHAR" property="newsClass" />
+    <result column="newpics" jdbcType="VARCHAR" property="newpics" />
+    <result column="news_djs" jdbcType="INTEGER" property="newsDjs" />
+    <result column="author" jdbcType="VARCHAR" property="author" />
+    <result column="sh" jdbcType="TINYINT" property="sh" />
+    <result column="tuij" jdbcType="TINYINT" property="tuij" />
+    <result column="isbold" jdbcType="TINYINT" property="isbold" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.example.mybatis.generator.entity.YNews">
+    <result column="news_con" jdbcType="LONGVARCHAR" property="newsCon" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, news_tit, titlepic, news_jj, news_source, add_time, add_ip, news_class, newpics, 
+    news_djs, author, sh, tuij, isbold
+  </sql>
+  <sql id="Blob_Column_List">
+    news_con
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.example.mybatis.generator.entity.YNewsExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from y_news
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.example.mybatis.generator.entity.YNewsExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from y_news
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from y_news
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from y_news
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.example.mybatis.generator.entity.YNewsExample">
+    delete from y_news
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.example.mybatis.generator.entity.YNews">
+    insert into y_news (id, news_tit, titlepic, 
+      news_jj, news_source, add_time, 
+      add_ip, news_class, newpics, 
+      news_djs, author, sh, 
+      tuij, isbold, news_con
+      )
+    values (#{id,jdbcType=INTEGER}, #{newsTit,jdbcType=VARCHAR}, #{titlepic,jdbcType=VARCHAR}, 
+      #{newsJj,jdbcType=VARCHAR}, #{newsSource,jdbcType=VARCHAR}, #{addTime,jdbcType=INTEGER}, 
+      #{addIp,jdbcType=CHAR}, #{newsClass,jdbcType=VARCHAR}, #{newpics,jdbcType=VARCHAR}, 
+      #{newsDjs,jdbcType=INTEGER}, #{author,jdbcType=VARCHAR}, #{sh,jdbcType=TINYINT}, 
+      #{tuij,jdbcType=TINYINT}, #{isbold,jdbcType=TINYINT}, #{newsCon,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.mybatis.generator.entity.YNews">
+    insert into y_news
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="newsTit != null">
+        news_tit,
+      </if>
+      <if test="titlepic != null">
+        titlepic,
+      </if>
+      <if test="newsJj != null">
+        news_jj,
+      </if>
+      <if test="newsSource != null">
+        news_source,
+      </if>
+      <if test="addTime != null">
+        add_time,
+      </if>
+      <if test="addIp != null">
+        add_ip,
+      </if>
+      <if test="newsClass != null">
+        news_class,
+      </if>
+      <if test="newpics != null">
+        newpics,
+      </if>
+      <if test="newsDjs != null">
+        news_djs,
+      </if>
+      <if test="author != null">
+        author,
+      </if>
+      <if test="sh != null">
+        sh,
+      </if>
+      <if test="tuij != null">
+        tuij,
+      </if>
+      <if test="isbold != null">
+        isbold,
+      </if>
+      <if test="newsCon != null">
+        news_con,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="newsTit != null">
+        #{newsTit,jdbcType=VARCHAR},
+      </if>
+      <if test="titlepic != null">
+        #{titlepic,jdbcType=VARCHAR},
+      </if>
+      <if test="newsJj != null">
+        #{newsJj,jdbcType=VARCHAR},
+      </if>
+      <if test="newsSource != null">
+        #{newsSource,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=INTEGER},
+      </if>
+      <if test="addIp != null">
+        #{addIp,jdbcType=CHAR},
+      </if>
+      <if test="newsClass != null">
+        #{newsClass,jdbcType=VARCHAR},
+      </if>
+      <if test="newpics != null">
+        #{newpics,jdbcType=VARCHAR},
+      </if>
+      <if test="newsDjs != null">
+        #{newsDjs,jdbcType=INTEGER},
+      </if>
+      <if test="author != null">
+        #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="sh != null">
+        #{sh,jdbcType=TINYINT},
+      </if>
+      <if test="tuij != null">
+        #{tuij,jdbcType=TINYINT},
+      </if>
+      <if test="isbold != null">
+        #{isbold,jdbcType=TINYINT},
+      </if>
+      <if test="newsCon != null">
+        #{newsCon,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.example.mybatis.generator.entity.YNewsExample" resultType="java.lang.Long">
+    select count(*) from y_news
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update y_news
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.newsTit != null">
+        news_tit = #{record.newsTit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.titlepic != null">
+        titlepic = #{record.titlepic,jdbcType=VARCHAR},
+      </if>
+      <if test="record.newsJj != null">
+        news_jj = #{record.newsJj,jdbcType=VARCHAR},
+      </if>
+      <if test="record.newsSource != null">
+        news_source = #{record.newsSource,jdbcType=VARCHAR},
+      </if>
+      <if test="record.addTime != null">
+        add_time = #{record.addTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.addIp != null">
+        add_ip = #{record.addIp,jdbcType=CHAR},
+      </if>
+      <if test="record.newsClass != null">
+        news_class = #{record.newsClass,jdbcType=VARCHAR},
+      </if>
+      <if test="record.newpics != null">
+        newpics = #{record.newpics,jdbcType=VARCHAR},
+      </if>
+      <if test="record.newsDjs != null">
+        news_djs = #{record.newsDjs,jdbcType=INTEGER},
+      </if>
+      <if test="record.author != null">
+        author = #{record.author,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sh != null">
+        sh = #{record.sh,jdbcType=TINYINT},
+      </if>
+      <if test="record.tuij != null">
+        tuij = #{record.tuij,jdbcType=TINYINT},
+      </if>
+      <if test="record.isbold != null">
+        isbold = #{record.isbold,jdbcType=TINYINT},
+      </if>
+      <if test="record.newsCon != null">
+        news_con = #{record.newsCon,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update y_news
+    set id = #{record.id,jdbcType=INTEGER},
+      news_tit = #{record.newsTit,jdbcType=VARCHAR},
+      titlepic = #{record.titlepic,jdbcType=VARCHAR},
+      news_jj = #{record.newsJj,jdbcType=VARCHAR},
+      news_source = #{record.newsSource,jdbcType=VARCHAR},
+      add_time = #{record.addTime,jdbcType=INTEGER},
+      add_ip = #{record.addIp,jdbcType=CHAR},
+      news_class = #{record.newsClass,jdbcType=VARCHAR},
+      newpics = #{record.newpics,jdbcType=VARCHAR},
+      news_djs = #{record.newsDjs,jdbcType=INTEGER},
+      author = #{record.author,jdbcType=VARCHAR},
+      sh = #{record.sh,jdbcType=TINYINT},
+      tuij = #{record.tuij,jdbcType=TINYINT},
+      isbold = #{record.isbold,jdbcType=TINYINT},
+      news_con = #{record.newsCon,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update y_news
+    set id = #{record.id,jdbcType=INTEGER},
+      news_tit = #{record.newsTit,jdbcType=VARCHAR},
+      titlepic = #{record.titlepic,jdbcType=VARCHAR},
+      news_jj = #{record.newsJj,jdbcType=VARCHAR},
+      news_source = #{record.newsSource,jdbcType=VARCHAR},
+      add_time = #{record.addTime,jdbcType=INTEGER},
+      add_ip = #{record.addIp,jdbcType=CHAR},
+      news_class = #{record.newsClass,jdbcType=VARCHAR},
+      newpics = #{record.newpics,jdbcType=VARCHAR},
+      news_djs = #{record.newsDjs,jdbcType=INTEGER},
+      author = #{record.author,jdbcType=VARCHAR},
+      sh = #{record.sh,jdbcType=TINYINT},
+      tuij = #{record.tuij,jdbcType=TINYINT},
+      isbold = #{record.isbold,jdbcType=TINYINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.mybatis.generator.entity.YNews">
+    update y_news
+    <set>
+      <if test="newsTit != null">
+        news_tit = #{newsTit,jdbcType=VARCHAR},
+      </if>
+      <if test="titlepic != null">
+        titlepic = #{titlepic,jdbcType=VARCHAR},
+      </if>
+      <if test="newsJj != null">
+        news_jj = #{newsJj,jdbcType=VARCHAR},
+      </if>
+      <if test="newsSource != null">
+        news_source = #{newsSource,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null">
+        add_time = #{addTime,jdbcType=INTEGER},
+      </if>
+      <if test="addIp != null">
+        add_ip = #{addIp,jdbcType=CHAR},
+      </if>
+      <if test="newsClass != null">
+        news_class = #{newsClass,jdbcType=VARCHAR},
+      </if>
+      <if test="newpics != null">
+        newpics = #{newpics,jdbcType=VARCHAR},
+      </if>
+      <if test="newsDjs != null">
+        news_djs = #{newsDjs,jdbcType=INTEGER},
+      </if>
+      <if test="author != null">
+        author = #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="sh != null">
+        sh = #{sh,jdbcType=TINYINT},
+      </if>
+      <if test="tuij != null">
+        tuij = #{tuij,jdbcType=TINYINT},
+      </if>
+      <if test="isbold != null">
+        isbold = #{isbold,jdbcType=TINYINT},
+      </if>
+      <if test="newsCon != null">
+        news_con = #{newsCon,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.example.mybatis.generator.entity.YNews">
+    update y_news
+    set news_tit = #{newsTit,jdbcType=VARCHAR},
+      titlepic = #{titlepic,jdbcType=VARCHAR},
+      news_jj = #{newsJj,jdbcType=VARCHAR},
+      news_source = #{newsSource,jdbcType=VARCHAR},
+      add_time = #{addTime,jdbcType=INTEGER},
+      add_ip = #{addIp,jdbcType=CHAR},
+      news_class = #{newsClass,jdbcType=VARCHAR},
+      newpics = #{newpics,jdbcType=VARCHAR},
+      news_djs = #{newsDjs,jdbcType=INTEGER},
+      author = #{author,jdbcType=VARCHAR},
+      sh = #{sh,jdbcType=TINYINT},
+      tuij = #{tuij,jdbcType=TINYINT},
+      isbold = #{isbold,jdbcType=TINYINT},
+      news_con = #{newsCon,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.mybatis.generator.entity.YNews">
+    update y_news
+    set news_tit = #{newsTit,jdbcType=VARCHAR},
+      titlepic = #{titlepic,jdbcType=VARCHAR},
+      news_jj = #{newsJj,jdbcType=VARCHAR},
+      news_source = #{newsSource,jdbcType=VARCHAR},
+      add_time = #{addTime,jdbcType=INTEGER},
+      add_ip = #{addIp,jdbcType=CHAR},
+      news_class = #{newsClass,jdbcType=VARCHAR},
+      newpics = #{newpics,jdbcType=VARCHAR},
+      news_djs = #{newsDjs,jdbcType=INTEGER},
+      author = #{author,jdbcType=VARCHAR},
+      sh = #{sh,jdbcType=TINYINT},
+      tuij = #{tuij,jdbcType=TINYINT},
+      isbold = #{isbold,jdbcType=TINYINT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.mybatis.generator.entity.YNews">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="news_tit" jdbcType="VARCHAR" property="newsTit" />
+    <result column="titlepic" jdbcType="VARCHAR" property="titlepic" />
+    <result column="news_jj" jdbcType="VARCHAR" property="newsJj" />
+    <result column="news_source" jdbcType="VARCHAR" property="newsSource" />
+    <result column="add_time" jdbcType="INTEGER" property="addTime" />
+    <result column="add_ip" jdbcType="CHAR" property="addIp" />
+    <result column="news_class" jdbcType="VARCHAR" property="newsClass" />
+    <result column="newpics" jdbcType="VARCHAR" property="newpics" />
+    <result column="news_djs" jdbcType="INTEGER" property="newsDjs" />
+    <result column="author" jdbcType="VARCHAR" property="author" />
+    <result column="sh" jdbcType="TINYINT" property="sh" />
+    <result column="tuij" jdbcType="TINYINT" property="tuij" />
+    <result column="isbold" jdbcType="TINYINT" property="isbold" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.example.mybatis.generator.entity.YNews">
+    <result column="news_con" jdbcType="LONGVARCHAR" property="newsCon" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, news_tit, titlepic, news_jj, news_source, add_time, add_ip, news_class, newpics, 
+    news_djs, author, sh, tuij, isbold
+  </sql>
+  <sql id="Blob_Column_List">
+    news_con
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.example.mybatis.generator.entity.YNewsExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from y_news
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.example.mybatis.generator.entity.YNewsExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from y_news
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from y_news
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from y_news
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.example.mybatis.generator.entity.YNewsExample">
+    delete from y_news
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.example.mybatis.generator.entity.YNews">
+    insert into y_news (id, news_tit, titlepic, 
+      news_jj, news_source, add_time, 
+      add_ip, news_class, newpics, 
+      news_djs, author, sh, 
+      tuij, isbold, news_con
+      )
+    values (#{id,jdbcType=INTEGER}, #{newsTit,jdbcType=VARCHAR}, #{titlepic,jdbcType=VARCHAR}, 
+      #{newsJj,jdbcType=VARCHAR}, #{newsSource,jdbcType=VARCHAR}, #{addTime,jdbcType=INTEGER}, 
+      #{addIp,jdbcType=CHAR}, #{newsClass,jdbcType=VARCHAR}, #{newpics,jdbcType=VARCHAR}, 
+      #{newsDjs,jdbcType=INTEGER}, #{author,jdbcType=VARCHAR}, #{sh,jdbcType=TINYINT}, 
+      #{tuij,jdbcType=TINYINT}, #{isbold,jdbcType=TINYINT}, #{newsCon,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.mybatis.generator.entity.YNews">
+    insert into y_news
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="newsTit != null">
+        news_tit,
+      </if>
+      <if test="titlepic != null">
+        titlepic,
+      </if>
+      <if test="newsJj != null">
+        news_jj,
+      </if>
+      <if test="newsSource != null">
+        news_source,
+      </if>
+      <if test="addTime != null">
+        add_time,
+      </if>
+      <if test="addIp != null">
+        add_ip,
+      </if>
+      <if test="newsClass != null">
+        news_class,
+      </if>
+      <if test="newpics != null">
+        newpics,
+      </if>
+      <if test="newsDjs != null">
+        news_djs,
+      </if>
+      <if test="author != null">
+        author,
+      </if>
+      <if test="sh != null">
+        sh,
+      </if>
+      <if test="tuij != null">
+        tuij,
+      </if>
+      <if test="isbold != null">
+        isbold,
+      </if>
+      <if test="newsCon != null">
+        news_con,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="newsTit != null">
+        #{newsTit,jdbcType=VARCHAR},
+      </if>
+      <if test="titlepic != null">
+        #{titlepic,jdbcType=VARCHAR},
+      </if>
+      <if test="newsJj != null">
+        #{newsJj,jdbcType=VARCHAR},
+      </if>
+      <if test="newsSource != null">
+        #{newsSource,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=INTEGER},
+      </if>
+      <if test="addIp != null">
+        #{addIp,jdbcType=CHAR},
+      </if>
+      <if test="newsClass != null">
+        #{newsClass,jdbcType=VARCHAR},
+      </if>
+      <if test="newpics != null">
+        #{newpics,jdbcType=VARCHAR},
+      </if>
+      <if test="newsDjs != null">
+        #{newsDjs,jdbcType=INTEGER},
+      </if>
+      <if test="author != null">
+        #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="sh != null">
+        #{sh,jdbcType=TINYINT},
+      </if>
+      <if test="tuij != null">
+        #{tuij,jdbcType=TINYINT},
+      </if>
+      <if test="isbold != null">
+        #{isbold,jdbcType=TINYINT},
+      </if>
+      <if test="newsCon != null">
+        #{newsCon,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.example.mybatis.generator.entity.YNewsExample" resultType="java.lang.Long">
+    select count(*) from y_news
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update y_news
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.newsTit != null">
+        news_tit = #{record.newsTit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.titlepic != null">
+        titlepic = #{record.titlepic,jdbcType=VARCHAR},
+      </if>
+      <if test="record.newsJj != null">
+        news_jj = #{record.newsJj,jdbcType=VARCHAR},
+      </if>
+      <if test="record.newsSource != null">
+        news_source = #{record.newsSource,jdbcType=VARCHAR},
+      </if>
+      <if test="record.addTime != null">
+        add_time = #{record.addTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.addIp != null">
+        add_ip = #{record.addIp,jdbcType=CHAR},
+      </if>
+      <if test="record.newsClass != null">
+        news_class = #{record.newsClass,jdbcType=VARCHAR},
+      </if>
+      <if test="record.newpics != null">
+        newpics = #{record.newpics,jdbcType=VARCHAR},
+      </if>
+      <if test="record.newsDjs != null">
+        news_djs = #{record.newsDjs,jdbcType=INTEGER},
+      </if>
+      <if test="record.author != null">
+        author = #{record.author,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sh != null">
+        sh = #{record.sh,jdbcType=TINYINT},
+      </if>
+      <if test="record.tuij != null">
+        tuij = #{record.tuij,jdbcType=TINYINT},
+      </if>
+      <if test="record.isbold != null">
+        isbold = #{record.isbold,jdbcType=TINYINT},
+      </if>
+      <if test="record.newsCon != null">
+        news_con = #{record.newsCon,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update y_news
+    set id = #{record.id,jdbcType=INTEGER},
+      news_tit = #{record.newsTit,jdbcType=VARCHAR},
+      titlepic = #{record.titlepic,jdbcType=VARCHAR},
+      news_jj = #{record.newsJj,jdbcType=VARCHAR},
+      news_source = #{record.newsSource,jdbcType=VARCHAR},
+      add_time = #{record.addTime,jdbcType=INTEGER},
+      add_ip = #{record.addIp,jdbcType=CHAR},
+      news_class = #{record.newsClass,jdbcType=VARCHAR},
+      newpics = #{record.newpics,jdbcType=VARCHAR},
+      news_djs = #{record.newsDjs,jdbcType=INTEGER},
+      author = #{record.author,jdbcType=VARCHAR},
+      sh = #{record.sh,jdbcType=TINYINT},
+      tuij = #{record.tuij,jdbcType=TINYINT},
+      isbold = #{record.isbold,jdbcType=TINYINT},
+      news_con = #{record.newsCon,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update y_news
+    set id = #{record.id,jdbcType=INTEGER},
+      news_tit = #{record.newsTit,jdbcType=VARCHAR},
+      titlepic = #{record.titlepic,jdbcType=VARCHAR},
+      news_jj = #{record.newsJj,jdbcType=VARCHAR},
+      news_source = #{record.newsSource,jdbcType=VARCHAR},
+      add_time = #{record.addTime,jdbcType=INTEGER},
+      add_ip = #{record.addIp,jdbcType=CHAR},
+      news_class = #{record.newsClass,jdbcType=VARCHAR},
+      newpics = #{record.newpics,jdbcType=VARCHAR},
+      news_djs = #{record.newsDjs,jdbcType=INTEGER},
+      author = #{record.author,jdbcType=VARCHAR},
+      sh = #{record.sh,jdbcType=TINYINT},
+      tuij = #{record.tuij,jdbcType=TINYINT},
+      isbold = #{record.isbold,jdbcType=TINYINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.mybatis.generator.entity.YNews">
+    update y_news
+    <set>
+      <if test="newsTit != null">
+        news_tit = #{newsTit,jdbcType=VARCHAR},
+      </if>
+      <if test="titlepic != null">
+        titlepic = #{titlepic,jdbcType=VARCHAR},
+      </if>
+      <if test="newsJj != null">
+        news_jj = #{newsJj,jdbcType=VARCHAR},
+      </if>
+      <if test="newsSource != null">
+        news_source = #{newsSource,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null">
+        add_time = #{addTime,jdbcType=INTEGER},
+      </if>
+      <if test="addIp != null">
+        add_ip = #{addIp,jdbcType=CHAR},
+      </if>
+      <if test="newsClass != null">
+        news_class = #{newsClass,jdbcType=VARCHAR},
+      </if>
+      <if test="newpics != null">
+        newpics = #{newpics,jdbcType=VARCHAR},
+      </if>
+      <if test="newsDjs != null">
+        news_djs = #{newsDjs,jdbcType=INTEGER},
+      </if>
+      <if test="author != null">
+        author = #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="sh != null">
+        sh = #{sh,jdbcType=TINYINT},
+      </if>
+      <if test="tuij != null">
+        tuij = #{tuij,jdbcType=TINYINT},
+      </if>
+      <if test="isbold != null">
+        isbold = #{isbold,jdbcType=TINYINT},
+      </if>
+      <if test="newsCon != null">
+        news_con = #{newsCon,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.example.mybatis.generator.entity.YNews">
+    update y_news
+    set news_tit = #{newsTit,jdbcType=VARCHAR},
+      titlepic = #{titlepic,jdbcType=VARCHAR},
+      news_jj = #{newsJj,jdbcType=VARCHAR},
+      news_source = #{newsSource,jdbcType=VARCHAR},
+      add_time = #{addTime,jdbcType=INTEGER},
+      add_ip = #{addIp,jdbcType=CHAR},
+      news_class = #{newsClass,jdbcType=VARCHAR},
+      newpics = #{newpics,jdbcType=VARCHAR},
+      news_djs = #{newsDjs,jdbcType=INTEGER},
+      author = #{author,jdbcType=VARCHAR},
+      sh = #{sh,jdbcType=TINYINT},
+      tuij = #{tuij,jdbcType=TINYINT},
+      isbold = #{isbold,jdbcType=TINYINT},
+      news_con = #{newsCon,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.mybatis.generator.entity.YNews">
+    update y_news
+    set news_tit = #{newsTit,jdbcType=VARCHAR},
+      titlepic = #{titlepic,jdbcType=VARCHAR},
+      news_jj = #{newsJj,jdbcType=VARCHAR},
+      news_source = #{newsSource,jdbcType=VARCHAR},
+      add_time = #{addTime,jdbcType=INTEGER},
+      add_ip = #{addIp,jdbcType=CHAR},
+      news_class = #{newsClass,jdbcType=VARCHAR},
+      newpics = #{newpics,jdbcType=VARCHAR},
+      news_djs = #{newsDjs,jdbcType=INTEGER},
+      author = #{author,jdbcType=VARCHAR},
+      sh = #{sh,jdbcType=TINYINT},
+      tuij = #{tuij,jdbcType=TINYINT},
+      isbold = #{isbold,jdbcType=TINYINT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

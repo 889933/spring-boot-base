@@ -1,0 +1,17 @@
+server:
+  port: 10125
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/cqdjd?useUnicode=true&useSSL=false&serverTimezone=UTC
+    type: com.alibaba.druid.pool.DruidDataSource
+    username: root
+    password: 123456
+    druid:
+      initialSize: 5
+logging:
+  level:
+    io.xuehao: debug
+## NOTE: 该配置节点为独立的节点，无缩进。容易误放在spring的节点下，导致配置无法被识别
+mybatis:
+  mapper-locations: classpath:generator/generatorConfig.xml
